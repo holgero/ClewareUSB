@@ -26,6 +26,10 @@ import de.holger_oehm.usb.hid.HiDeviceFactory;
 import de.holger_oehm.usb.hid.USBAddress;
 
 public interface USBLeds extends Closeable {
+    enum LedColor {
+        RED, YELLOW, GREEN, BLUE, WHITE, MAGENTA, CYAN;
+    }
+
     public static final class Factory {
         private static final USBAddress CLEWARE = new USBAddress(0x0d50, 0x0008);
 
@@ -82,6 +86,8 @@ public interface USBLeds extends Closeable {
             throw new UnknownLedVendorException(address);
         }
     }
+
+    void set(LedColor... colors);
 
     void red();
 
