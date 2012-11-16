@@ -37,24 +37,4 @@ public class ClewareAmpel extends AbstractLeds implements USBLeds {
     public void green() {
         setState(0, 0, 1);
     }
-
-    @Override
-    public void blue() {
-        off();
-    }
-
-    @Override
-    public void white() {
-        off();
-    }
-
-    @Override
-    public void magenta() {
-        off();
-    }
-
-    @Override
-    public void cyan() {
-        off();
-    }
 }

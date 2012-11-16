@@ -27,23 +27,14 @@ import de.holger_oehm.usb.hid.USBAddress;
 
 public interface USBLeds extends Closeable {
     public static final class Factory {
-        private static final USBAddress DREAM_CHEEKY = new USBAddress(0x1d34, 0x0004);
         private static final USBAddress CLEWARE = new USBAddress(0x0d50, 0x0008);
 
         private static final class LedDevicesIterator implements Iterator<USBLeds> {
-            boolean triedDreamCheeky = false;
             boolean triedCleware = false;
             USBLeds next = null;
 
             @Override
             public boolean hasNext() {
-                if (next != null) {
-                    return true;
-                }
-                if (!triedDreamCheeky) {
-                    triedDreamCheeky = true;
-                    tryCreateNext(DREAM_CHEEKY);
-                }
                 if (next != null) {
                     return true;
                 }
@@ -85,9 +76,6 @@ public interface USBLeds extends Closeable {
 
         public static USBLeds createInstance(final USBAddress address) {
             final HiDevice device = new HiDeviceFactory().create(address);
-            if (address.getVendorId() == DREAM_CHEEKY.getVendorId()) {
-                return new DreamCheekyLeds(device);
-            }
             if (address.getVendorId() == CLEWARE.getVendorId()) {
                 return new ClewareAmpel(device);
             }
@@ -97,19 +85,11 @@ public interface USBLeds extends Closeable {
 
     void red();
 
-    void off();
-
     void yellow();
 
     void green();
 
-    void blue();
-
-    void white();
-
-    void magenta();
-
-    void cyan();
+    void off();
 
     /**
      * Switches the LEDs off, closes this USBLeds device and releases any system

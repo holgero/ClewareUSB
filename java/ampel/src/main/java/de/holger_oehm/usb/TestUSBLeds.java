@@ -33,14 +33,6 @@ public class TestUSBLeds {
                     Thread.sleep(100L);
                     leds.green();
                     Thread.sleep(100L);
-                    leds.blue();
-                    Thread.sleep(100L);
-                    leds.white();
-                    Thread.sleep(100L);
-                    leds.magenta();
-                    Thread.sleep(100L);
-                    leds.cyan();
-                    Thread.sleep(100L);
                     leds.off();
                     Thread.sleep(200L);
                 }
