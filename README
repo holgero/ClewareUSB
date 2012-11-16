@@ -25,3 +25,10 @@ java/usbleds		Cleware USB-TischAmpel java driver
 java/buildmonitor	main program with the build monitor
 
 See also the file CREDITS.
+
+h2. Binary Downloads
+
+The CI build of this project runs at cloudbees:
+https://xfd.ci.cloudbees.com/job/cleware/, the latest artifact is
+available as binary download from here:
+https://xfd.ci.cloudbees.com/job/cleware/lastSuccessfulBuild/artifact/java/buildmonitor/target/buildmonitor-0.1.0-SNAPSHOT-jar-with-dependencies.jar
