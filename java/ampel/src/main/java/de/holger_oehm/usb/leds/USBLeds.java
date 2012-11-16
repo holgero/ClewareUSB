@@ -27,12 +27,12 @@ import de.holger_oehm.usb.hid.USBAddress;
 
 public interface USBLeds extends Closeable {
     public static final class Factory {
-        private static final USBAddress USBLEDS = new USBAddress(0x1d50, 0x6039);
         private static final USBAddress DREAM_CHEEKY = new USBAddress(0x1d34, 0x0004);
+        private static final USBAddress CLEWARE = new USBAddress(0x0d50, 0x0008);
 
         private static final class LedDevicesIterator implements Iterator<USBLeds> {
-            boolean triedUsbLeds = false;
             boolean triedDreamCheeky = false;
+            boolean triedCleware = false;
             USBLeds next = null;
 
             @Override
@@ -40,16 +40,16 @@ public interface USBLeds extends Closeable {
                 if (next != null) {
                     return true;
                 }
-                if (!triedUsbLeds) {
-                    triedUsbLeds = true;
-                    tryCreateNext(USBLEDS);
+                if (!triedDreamCheeky) {
+                    triedDreamCheeky = true;
+                    tryCreateNext(DREAM_CHEEKY);
                 }
                 if (next != null) {
                     return true;
                 }
-                if (!triedDreamCheeky) {
-                    triedDreamCheeky = true;
-                    tryCreateNext(DREAM_CHEEKY);
+                if (!triedCleware) {
+                    triedCleware = true;
+                    tryCreateNext(CLEWARE);
                 }
                 if (next != null) {
                     return true;
@@ -88,7 +88,10 @@ public interface USBLeds extends Closeable {
             if (address.getVendorId() == DREAM_CHEEKY.getVendorId()) {
                 return new DreamCheekyLeds(device);
             }
-            return new DyiLeds(device);
+            if (address.getVendorId() == CLEWARE.getVendorId()) {
+                return new ClewareAmpel(device);
+            }
+            throw new UnknownLedVendorException(address);
         }
     }
 

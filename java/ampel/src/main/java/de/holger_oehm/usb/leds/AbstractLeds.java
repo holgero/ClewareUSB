@@ -20,11 +20,16 @@ package de.holger_oehm.usb.leds;
 import de.holger_oehm.usb.hid.HiDevice;
 
 abstract class AbstractLeds implements USBLeds {
-    private final byte[] reportData = new byte[8];
+    private final byte[] reportData;
 
     private final HiDevice device;
 
     public AbstractLeds(final HiDevice device) {
+        this(device, 8);
+    }
+
+    public AbstractLeds(final HiDevice device, final int buffersize) {
+        reportData = new byte[buffersize];
         this.device = device;
     }
 
