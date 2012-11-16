@@ -19,8 +19,8 @@
 -->
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.holger_oehm.usb.leds</groupId>
-	<artifactId>usbleds</artifactId>
+	<groupId>de.holger_oehm.usb.cleware</groupId>
+	<artifactId>ampel</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.0-SNAPSHOT</version>
 	<name>USBLeds</name>

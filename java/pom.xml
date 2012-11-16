@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.holger_oehm.usb.leds</groupId>
+	<groupId>de.holger_oehm.usb.cleware.ampel</groupId>
 	<artifactId>modules</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -27,7 +27,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<modules>
-		<module>usbleds</module>
+		<module>ampel</module>
 		<module>buildmonitor</module>
 	</modules>
 </project>

@@ -20,7 +20,7 @@
 -->
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.holger_oehm.usb.leds</groupId>
+	<groupId>de.holger_oehm.usb.cleware</groupId>
 	<artifactId>buildmonitor</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1.0-SNAPSHOT</version>
