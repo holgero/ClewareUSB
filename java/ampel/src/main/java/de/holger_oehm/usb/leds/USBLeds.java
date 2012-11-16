@@ -27,7 +27,7 @@ import de.holger_oehm.usb.hid.USBAddress;
 
 public interface USBLeds extends Closeable {
     enum LedColor {
-        RED, YELLOW, GREEN, BLUE, WHITE, MAGENTA, CYAN;
+        RED, YELLOW, GREEN;
     }
 
     public static final class Factory {
