@@ -26,19 +26,21 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 
 import com.google.gson.Gson;
 
 public class JenkinsMonitor {
     private final Gson gson = new Gson();
-    private final HttpClient client = new DefaultHttpClient();
+    private final HttpClient client;
     private final HttpGet getJsonApi;
     private final String url;
 
     public JenkinsMonitor(final String url) {
         this.url = url;
         getJsonApi = new HttpGet(url + "/api/json");
+        client = createClient();
     }
 
     public BuildState state() throws ClientProtocolException, IOException {
@@ -56,4 +58,7 @@ public class JenkinsMonitor {
         }
     }
 
+    private HttpClient createClient() {
+        return HttpClients.custom().setRoutePlanner( new SystemDefaultRoutePlanner(null)).build();
+    }
 }
