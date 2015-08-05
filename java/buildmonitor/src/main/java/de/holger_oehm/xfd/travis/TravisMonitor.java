@@ -15,7 +15,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.holger_oehm.xfd.jenkins;
+package de.holger_oehm.xfd.travis;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,15 +34,15 @@ import com.google.gson.Gson;
 import de.holger_oehm.xfd.BuildState;
 import de.holger_oehm.xfd.MonitorInterface;
 
-public class JenkinsMonitor implements MonitorInterface {
+public class TravisMonitor implements MonitorInterface {
     private final Gson gson = new Gson();
     private final HttpClient client;
     private final HttpGet getJsonApi;
     private final String url;
 
-    public JenkinsMonitor(final String url) {
+    public TravisMonitor(final String url) {
         this.url = url;
-        getJsonApi = new HttpGet(url + "/api/json");
+        getJsonApi = new HttpGet(url);
         client = createClient();
     }
 
@@ -55,8 +55,8 @@ public class JenkinsMonitor implements MonitorInterface {
         }
         final InputStream instream = entity.getContent();
         try {
-            final JenkinsView jenkinsView = gson.fromJson(new InputStreamReader(instream), JenkinsView.class);
-            return jenkinsView.getState();
+            final TravisView.TravisJob travisJob = gson.fromJson(new InputStreamReader(instream), TravisView.TravisJob.class);
+            return travisJob.getState();
         } finally {
             instream.close();
         }
