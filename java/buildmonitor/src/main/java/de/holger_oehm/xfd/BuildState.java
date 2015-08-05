@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.holger_oehm.xfd.jenkins;
+package de.holger_oehm.xfd;
 
 public enum BuildState {
     OK, OK_BUILDING, INSTABLE, INSTABLE_BUILDING, FAILED_BUILDING, FAILED;

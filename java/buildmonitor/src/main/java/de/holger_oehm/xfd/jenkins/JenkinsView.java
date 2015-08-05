@@ -19,6 +19,8 @@ package de.holger_oehm.xfd.jenkins;
 
 import java.util.Arrays;
 
+import de.holger_oehm.xfd.BuildState;
+
 public class JenkinsView {
     public static class JenkinsJob {
         private String name;

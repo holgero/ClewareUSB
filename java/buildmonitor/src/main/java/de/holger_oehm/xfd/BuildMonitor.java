@@ -19,8 +19,8 @@ package de.holger_oehm.xfd;
 
 import de.holger_oehm.usb.leds.USBLeds;
 import de.holger_oehm.usb.leds.USBLeds.LedColor;
-import de.holger_oehm.xfd.jenkins.BuildState;
 import de.holger_oehm.xfd.jenkins.JenkinsMonitor;
+import de.holger_oehm.xfd.travis.TravisMonitor;
 
 public class BuildMonitor {
     private static final USBLeds LEDS = USBLeds.Factory.enumerateLedDevices().next();
@@ -35,12 +35,16 @@ public class BuildMonitor {
         new BuildMonitor(args[0]).run();
     }
 
-    private final JenkinsMonitor monitor;
+    private final MonitorInterface monitor;
     private final String url;
 
     public BuildMonitor(final String url) {
         this.url = url;
-        monitor = new JenkinsMonitor(url);
+        if (url.indexOf("travis") != -1) {
+            monitor = new TravisMonitor(url);
+        } else {
+            monitor = new JenkinsMonitor(url);
+        }
     }
 
     private void run() {
